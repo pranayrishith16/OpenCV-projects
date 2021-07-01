@@ -23,7 +23,6 @@ result = None
 source = cv2.VideoCapture(0)
 
 
-
 while alive:
     has_frame, frame = source.read()
     if not has_frame:
