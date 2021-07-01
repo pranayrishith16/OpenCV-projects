@@ -1,7 +1,6 @@
 import numpy as np
 import cv2
 
-
 def cartoonize_img(img, ds_factor=4, sketch_mode=False):
     # converting to grayscale
     img_gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
@@ -19,8 +18,8 @@ def cartoonize_img(img, ds_factor=4, sketch_mode=False):
     sigma_space = 7
     size = 5
     # Apply bilateral filter multiple times
-    # for i in range(num_repetitions):
-    #     img = cv2.bilateralFilter(img,size,sigma_color,sigma_space)
+    for i in range(num_repetitions):
+        img = cv2.bilateralFilter(img,size,sigma_color,sigma_space)
     dst = np.zeros(img_gray.shape)
     dst = cv2.bitwise_and(img,img,mask=mask)
     return dst
@@ -35,7 +34,6 @@ prev_char = -1
 
 while True:
     _, frame = cap.read()
-    # cv2.imshow("frame",frame)
     c = cv2.waitKey(1)
     if c == 27:
         break
